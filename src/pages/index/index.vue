@@ -7,10 +7,10 @@
   </view>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
 
-import { apiNbaData } from "@/api/apis.js";
+import { apiNbaData } from '@/api/apis.js';
 
 let isNetError = ref(false);
 let message = ref("");
