@@ -40,24 +40,24 @@
 
 ```
 
-3. 新建 `common.js` 文件，重新组装 `url` 地址
+3. 新建 `common.js` 文件，提供重新组装 `url` 地址函数 `packApiUrl`
 
 ```
     import { API_HOST, API_PROXY } from "@/config.js";
 
     // 组装接口url
     export const packApiUrl = (url) => {
-    if (url.slice(0, 4) === "http" || url.slice(0, 5) === "https") {
-        // http 或 https 开头的直接返回
-        return url;
-    } else {
-        // 相对路径，添加代理前缀
-        return API_HOST + API_PROXY + url;
-    }
+        if (url.slice(0, 4) === "http" || url.slice(0, 5) === "https") {
+            // http 或 https 开头的直接返回
+            return url;
+        } else {
+            // 相对路径，添加代理前缀
+            return API_HOST + API_PROXY + url;
+        }
     };
 ```
 
-4. 请求接口基类中(`request.js`)，统一处理 `url` 地址 (通过`packApiUrl` 方法)
+4. 请求接口基类中(`request.js`)，统一替换 `url` 地址 (通过 `packApiUrl` 方法)
 
 ```
     export function request(config = {}) {
@@ -66,6 +66,6 @@
         // 处理url
         url = packApiUrl(url);
 
-        //开始发送请求代码...
+        // 开始发送请求代码...
     }
 ```
